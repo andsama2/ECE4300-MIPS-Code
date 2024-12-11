@@ -44,7 +44,7 @@ module I_EXECUTE(
     
     ADDER adder (
         .add_in1(npcout),
-        .add_in2(s_extendout[5:0]),
+        .add_in2(s_extendout),
         .add_out(adder_out)
     );
     
@@ -60,8 +60,9 @@ module I_EXECUTE(
     wire [31:0] aluout;
     
     ALU_MAX alu_mux (
-        .a(rdata1out),
-        .b(s_extendout[5:0]),
+        .a(rdata2out),
+        .b(s_extendout),
+        .A(rdata1out),
         .sel(ALUSrc),
         .zero(aluzero),
         .result(aluout),
