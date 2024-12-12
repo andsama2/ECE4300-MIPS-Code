@@ -23,7 +23,8 @@
 module I_DECODE(
     input [31:0] IF_ID_instr, IF_ID_NPC,
     input [31:0] writedata,
-    input [5:0] rd,
+    input [4:0] rd,
+    input regwrite,
     output [1:0] wb_ctlout,
     output [2:0] m_ctlout,
     output [3:0] ex_ctlout,
@@ -55,7 +56,7 @@ module I_DECODE(
         .rd(rd),
         .rt(IF_ID_instr[20:16]),
         .writedata(writedata),
-        .regwrite(1),
+        .regwrite(regwrite),
         .A(A),
         .B(B),
         .clk(clk),
