@@ -30,17 +30,24 @@ module memory(
     reg [31:0]  MEM[0:127];
     initial begin
     
-    MEM[0] <= 'hA00000AA;
-    MEM[1] <= 'h10000011;
-    MEM[2] <= 'h20000022;
-    MEM[3] <= 'h30000033;
-    MEM[4] <= 'h40000044;
-    MEM[5] <= 'h50000055;
-    MEM[6] <= 'h60000066;
-    MEM[7] <= 'h70000077;
-    MEM[8] <= 'h80000088;
+    MEM[0] <= 'h002300AA;
+    MEM[1] <= 'h10654321;
+    MEM[2] <= 'h00100022;
+    MEM[3] <= 'h8C123456;
+    MEM[4] <= 'h8F123456;
+    MEM[5] <= 'hAD654321;
+    MEM[6] <= 'h13012345;
+    MEM[7] <= 'hAC654321;
+    MEM[8] <= 'h12012345;
     MEM[9] <= 'h90000099;
     end
     
     always @ (posedge clk) data <= MEM[addr];
+    
+    integer i;
+    initial begin
+        $readmemb("risc.txt", MEM);
+        for (i = 0; i < 24; i = i + 1)
+            $display(MEM[i]);
+    end
 endmodule
