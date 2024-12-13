@@ -31,6 +31,7 @@ module CONTROL(
     parameter [5:0] lw = 6'b100011;
     parameter [5:0] sw = 6'b101011;
     parameter [5:0] beq = 6'b000100;
+    parameter [5:0] NOP = 6'b100000;
     
     always @(opcode)
     begin
@@ -58,6 +59,11 @@ module CONTROL(
             EX <= 4'bx010;
             M <= 3'b100;
             WB <= 2'b0x;
+        end
+        NOP: begin
+            EX <= 4'b0000;
+            M <= 3'b000;
+            WB <= 2'b00;
         end
         default: begin
             EX <= 4'b0000;
